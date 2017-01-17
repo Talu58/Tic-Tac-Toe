@@ -1,15 +1,15 @@
 $(function() {
 
-  var player = 1;
-  var table = $('table');
-  var message = $('#message');
-  var turn = $('#turn');
+  let player = 1;
+  let table = $('table');
+  let message = $('#message');
+  let turn = $('#turn');
 
 
   $('td').click(function() {
     td = $('this');
     if (!alreadyPlayed(td)) {
-      var pattern = crossOrCircle(player);
+      const pattern = crossOrCircle(player);
       addClass(td, pattern);
       if (checkIfPlayerWon(table, pattern)) {
         message.html('Player ' + player + ' has won!!!');
@@ -54,6 +54,10 @@ $(function() {
 
   var addClass = (td, pattern) => {
     return td.addClass(pattern);
+  }
+
+  var checkIfPlayerWon = () => {
+
   }
 
 
