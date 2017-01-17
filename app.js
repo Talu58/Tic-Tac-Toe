@@ -1,13 +1,14 @@
-$(function() {
+$( document ).ready(function() {
 
   let player = 1;
   let table = $('table');
   let message = $('#message');
   let turn = $('#turn');
-
+  displayPlayer(player);
 
   $('td').click(function() {
     td = $('this');
+    console.log('hello');
     if (!alreadyPlayed(td)) {
       const pattern = crossOrCircle(player);
       addClass(td, pattern);
@@ -24,15 +25,15 @@ $(function() {
   });
 
 
-  var setNextPlayer = (player) => {
-    if (player === 1) {
-      player = 2;
+  function setNextPlayer(player) {
+    if (player == 1) {
+      return 2;
     } else {
-      player = 1;
+      return 1;
     }
   };
 
-  var crossOrCircle = (player) => {
+  function crossOrCircle(player) {
     if (player === 1) {
       return 'cross';
     } else {
@@ -40,11 +41,11 @@ $(function() {
     }
   };
 
-  var displayPlayer = (player) => {
+  function displayPlayer(player) {
     turn.html('Player turn: ' + player);
   };
 
-  var alreadyPlayed = (td) => {
+  function alreadyPlayed(td) {
     if (td.hasClass('cross') || td.hasClass('circle')) {
       return true;
     } else {
@@ -52,11 +53,11 @@ $(function() {
     }
   }
 
-  var addClass = (td, pattern) => {
+  function addClass(td, pattern) {
     return td.addClass(pattern);
   }
 
-  var checkIfPlayerWon = () => {
+  function checkIfPlayerWon() {
 
   }
 
