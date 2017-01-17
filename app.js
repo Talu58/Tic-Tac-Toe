@@ -7,9 +7,9 @@ $( document ).ready(function() {
   displayPlayer(player);
 
   $('td').click(function() {
-    td = $('this');
-    console.log('hello');
+    td = $(this);
     if (!alreadyPlayed(td)) {
+      message.html('');
       const pattern = crossOrCircle(player);
       addClass(td, pattern);
       if (checkIfPlayerWon(table, pattern)) {
@@ -23,6 +23,13 @@ $( document ).ready(function() {
       message.html('This box is already checked!!!');
     }
   });
+
+  $('#reset').click(function() {
+    player = 1;
+    message.html('');
+    reset(table);
+    displayPlayer(player);
+  })
 
 
   function setNextPlayer(player) {
@@ -57,8 +64,32 @@ $( document ).ready(function() {
     return td.addClass(pattern);
   }
 
-  function checkIfPlayerWon() {
+  function reset(table) {
+    table.find('td').each(function() {
+      $(this).removeClass('cross').removeClass('circle');
+    })
+  }
 
+  function checkIfPlayerWon(table, pattern) {
+    if (table.find('#1').hasClass(pattern) && table.find('#2').hasClass(pattern) && table.find('#3').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#4').hasClass(pattern) && table.find('#5').hasClass(pattern) && table.find('#6').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#7').hasClass(pattern) && table.find('#8').hasClass(pattern) && table.find('#9').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#1').hasClass(pattern) && table.find('#4').hasClass(pattern) && table.find('#7').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#2').hasClass(pattern) && table.find('#5').hasClass(pattern) && table.find('#8').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#3').hasClass(pattern) && table.find('#6').hasClass(pattern) && table.find('#9').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#1').hasClass(pattern) && table.find('#5').hasClass(pattern) && table.find('#9').hasClass(pattern)) {
+      return true;
+    } else if (table.find('#7').hasClass(pattern) && table.find('#5').hasClass(pattern) && table.find('#3').hasClass(pattern)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
